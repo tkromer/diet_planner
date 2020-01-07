@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Shopping List Item</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <div class="container">    
+        <form>
+            <div>
+                <label for="rname">Recipe Name</label>
+                <input type="text" id="rname" autofocus>
+                <label>Ingredients</label>
+                <ul id="ingredients"></ul>
+            </div>
+            <button class = "btn waves-effect waves-light" type="submit">Add Recipe</button>
+        </form>
+    </div>  
+
+    <script>        
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        // Add ingredients
+        const ul = document.querySelector('ul');
+        ul.className = 'collection';
+
+        
+        const li = document.createElement('li');
+        
+        li.className = 'collection-item';
+
+        var id;
+        var i;
+
+        for(i = 0; i < 5; i++){
+            const input = document.createElement('input');
+            input.setAttribute('type','text');
+            id = "ing".concat(i.toString());
+            input.id = id;
+            li.appendChild(input);
+            ul.appendChild(li);            
+        }
+
+
+        
+        
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(e) {
+            e.preventDefault();
+            const item = document.querySelector('#rname').value;
+            ipcRenderer.send('rname:add', rname);
+        }
+    </script>
+    
+</body>
+</html>
