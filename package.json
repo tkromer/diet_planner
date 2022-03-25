@@ -12,7 +12,7 @@
   "author": "Tim Kromer",
   "license": "MIT",
   "dependencies": {
-    "electron": "^7.1.7"
+    "electron": "^13.6.6"
   },
   "devDependencies": {
     "electron-packager": "^14.1.1"
